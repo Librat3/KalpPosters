@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Anime Shop</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background:#f5f5f5; }
+    header { background:#111; color:white; text-align:center; padding:20px; }
+    .container { display:grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap:20px; padding:20px; }
+    .product { background:white; padding:15px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); text-align:center; }
+    .product img { width:100%; border-radius:12px; }
+    .product h2 { font-size:18px; margin:10px 0 5px; }
+    .product p { font-size:16px; font-weight:bold; }
+    .btn { background:#ff4757; color:white; padding:10px 15px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; }
+    .btn:hover { background:#e84118; }
+    #cart { background:white; padding:15px; margin:20px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Shop</h1>
+    <p>Buy Anime Posters Online 🎉</p>
+  </header>
+
+  <div class="container">
+    <div class="product">
+      <img src="poster1.jpg" alt="Poster 1">
+      <h2>Demon Slayer Poster</h2>
+      <p>₹199</p>
+      <button class="btn" onclick="addToCart('Demon Slayer Poster',199)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="poster2.jpg" alt="Poster 2">
+      <h2>One Piece Poster</h2>
+      <p>₹249</p>
+      <button class="btn" onclick="addToCart('One Piece Poster',249)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="poster3.jpg" alt="Poster 3">
+      <h2>Solo Leveling Poster</h2>
+      <p>₹199</p>
+      <button class="btn" onclick="addToCart('Solo Leveling Poster',199)">Add to Cart</button>
+    </div>
+  </div>
+
+  <div id="cart">
+    <h2>🛒 Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p><strong>Total: ₹<span id="total">0</span></strong></p>
+    <a id="checkout-link" href="#" target="_blank">
+      <button class="btn">Checkout</button>
+    </a>
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+      cart.push({name, price});
+      total += price;
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartList = document.getElementById('cart-items');
+      cartList.innerHTML = '';
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - ₹${item.price}`;
+        cartList.appendChild(li);
+      });
+      document.getElementById('total').textContent = total;
+      document.getElementById('checkout-link').href = "https://rzp.io/l/your-link-here";
+    }
+  </script>
+</body>
+</html>
